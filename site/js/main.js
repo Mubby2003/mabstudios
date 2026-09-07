@@ -5,6 +5,7 @@
 import { CATEGORIES, PHOTOS, HERO_SLIDES, REEL } from './data.js';
 import { createHero } from './hero.js';
 import { createReel } from './gallery3d.js';
+import { createWordmark } from './wordmark.js';
 
 /* ==================================================================
    ⚙  SETTINGS — the only lines you need to touch to go live
@@ -476,4 +477,7 @@ function initReel(cursor) {
 
   await initHero();
   initReel(cursor);
+
+  const markCanvas = $('#markCanvas');
+  if (markCanvas) createWordmark({ canvas: markCanvas, text: 'MAB STUDIOS', reduced });
 })();

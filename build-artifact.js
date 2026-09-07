@@ -62,7 +62,7 @@ const stripModule = src => src
   .replace(/^\s*import[^;]+;\s*$/gm, '')                 // import * as THREE / import {...}
   .replace(/^export\s+/gm, '');                          // export const / export function
 
-const js = ['data.js', 'hero.js', 'gallery3d.js', 'main.js']
+const js = ['data.js', 'hero.js', 'gallery3d.js', 'wordmark.js', 'main.js']
   .map(f => `/* ===== ${f} ===== */\n` + stripModule(read(path.join(SITE, 'js', f))))
   .join('\n\n');
 
