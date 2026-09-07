@@ -579,3 +579,28 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
   .hero{min-height:520px}
   .quote{min-height:46vh}
 }
+
+/* ==================================================================
+   20. FOOTER WORDMARK — the studio name drawn as particles that the
+   pointer pushes aside. Replaces the old outlined display text.
+================================================================== */
+.foot__mark{
+  position:relative;
+  width:100%;
+  height:clamp(64px,13vw,180px);
+  margin-bottom:clamp(2rem,6vw,4rem);
+  cursor:crosshair;
+}
+.foot__mark canvas{
+  display:block;width:100%;height:100%;
+}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+/* no-JS fallback keeps the name visible */
+.foot__mark noscript .foot__big{margin-bottom:0}
+
+@media (prefers-reduced-motion:reduce){
+  .foot__mark{cursor:default}
+}
