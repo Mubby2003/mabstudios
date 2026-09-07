@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAB Studios — Portrait, Wedding &amp; Event Photography, UK</title>
+<meta name="description" content="MAB Studios is a UK photography studio preserving moments through the lenses — portraits, weddings, traditional ceremonies and events. 2026/2027 bookings open.">
+<meta name="theme-color" content="#0d0a08">
+
+<!-- Link previews (WhatsApp, Instagram DMs, Facebook, iMessage).
+     Once the site is live, replace the two URLs below with the real
+     address, e.g. https://mabstudiosuk.netlify.app/ — some apps refuse
+     to show a preview image unless the URL is absolute. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MAB Studios">
+<meta property="og:title" content="MAB Studios — Portrait, Wedding &amp; Event Photography">
+<meta property="og:description" content="Preserving moments through the lenses. A UK photography studio shooting portraits, weddings, traditional ceremonies and events. 2026/2027 bookings open.">
+<meta property="og:image" content="assets/img/ig/ig-01.jpg">
+<meta property="og:image:alt" content="A couple photographed in black tie and a white cape gown beside a vintage car">
+<meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MAB Studios — Portrait, Wedding &amp; Event Photography">
+<meta name="twitter:description" content="Preserving moments through the lenses. Portraits, weddings, traditional ceremonies and events, UK.">
+<meta name="twitter:image" content="assets/img/ig/ig-01.jpg">
+
+<link rel="preload" href="assets/img/ig/ig-01.jpg" as="image">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0a08'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23e2b087' stroke-width='6'/><circle cx='50' cy='50' r='9' fill='%23e2b087'/></svg>">
+<script type="importmap">
+{ "imports": { "three": "./assets/vendor/three.module.js" } }
+</script>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__mark">M<span>A</span>B</div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+    <div class="loader__count"><span id="loaderPct">0</span>%</div>
+  </div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"><span class="cursor__label"></span></div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__brand" data-cursor="hover">
+    <span class="nav__mark">M<em>A</em>B</span>
+    <span class="nav__name">Studios · UK</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#reel" data-nav>Signature</a>
+    <a href="#work" data-nav>Work</a>
+    <a href="#services" data-nav>Services</a>
+    <a href="#studio" data-nav>Studio</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+  <a href="#contact" class="btn btn--sm nav__cta" data-magnetic data-cursor="hover">Book a date</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="menu" id="menu" aria-hidden="true">
+  <nav class="menu__links">
+    <a href="#reel" data-nav><span>01</span> Signature</a>
+    <a href="#work" data-nav><span>02</span> Work</a>
+    <a href="#services" data-nav><span>03</span> Services</a>
+    <a href="#studio" data-nav><span>04</span> Studio</a>
+    <a href="#contact" data-nav><span>05</span> Contact</a>
+  </nav>
+  <div class="menu__foot">
+    <a href="mailto:info@mabstudios.co.uk">info@mabstudios.co.uk</a>
+    <span>United Kingdom · @mabstudiosuk</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO (WebGL) ============ -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="hero__fallback" id="heroFallback" aria-hidden="true"></div>
+    <div class="hero__scrim"></div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow"><span class="line"></span> Photography Studio · United Kingdom</p>
+      <h1 class="hero__title">
+        <span class="reveal"><span>Preserving moments</span></span>
+        <span class="reveal"><span>through the <em>lenses</em>.</span></span>
+      </h1>
+      <p class="hero__sub">Portraits, weddings, traditional ceremonies and events — photographed by MAB Studios. Bookings for 2026 and 2027 are open.</p>
+      <div class="hero__actions">
+        <a href="#work" class="btn" data-magnetic data-cursor="hover">View the work</a>
+        <a href="https://wa.me/447562511049" target="_blank" rel="noopener noreferrer" class="btn btn--ghost" data-magnetic data-cursor="hover">Message on WhatsApp</a>
+      </div>
+    </div>
+
+    <div class="hero__meta">
+      <div class="hero__slide-info">
+        <span class="hero__slide-idx" id="heroIdx">01</span>
+        <div>
+          <strong id="heroLabel">Black Tie, White Cape</strong>
+          <em id="heroPlace">Wedding portrait</em>
+        </div>
+      </div>
+      <div class="hero__dots" id="heroDots"></div>
+    </div>
+
+    <a href="#reel" class="hero__scroll" data-cursor="hover"><span>Scroll</span><i></i></a>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Portraits <i>✳</i> Weddings <i>✳</i> Traditional <i>✳</i> Events <i>✳</i> Baby Shoots <i>✳</i> Birthdays <i>✳</i></span>
+      <span>Portraits <i>✳</i> Weddings <i>✳</i> Traditional <i>✳</i> Events <i>✳</i> Baby Shoots <i>✳</i> Birthdays <i>✳</i></span>
+    </div>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section class="intro" data-reveal>
+    <p class="sec-label">01 — The Studio</p>
+    <h2 class="intro__text">
+      A gele tied that morning, a hand that will not let go, the
+      <em>half-second</em> before everybody laughs. <span>These are the frames
+      worth staying quiet for — and the ones we came for.</span>
+    </h2>
+    <div class="intro__stats">
+      <div><b>UK</b><span>Based &amp; travelling</span></div>
+      <div><b>2026<span class="slash">/</span>27</b><span>Bookings open</span></div>
+      <div><b>Nikon&nbsp;Z</b><span>Creator</span></div>
+      <div><b data-count="12">0</b><span>Frames in this archive</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SIGNATURE REEL (WebGL 3D) ============ -->
+  <section class="reel" id="reel">
+    <div class="reel__head">
+      <p class="sec-label">02 — Signature Series</p>
+      <h2 class="h2">A curved wall of<br><em>favourite frames</em></h2>
+      <p class="reel__hint"><span class="drag-ico"></span> Drag, scroll or use ← → to move through. Click a frame to open it.</p>
+    </div>
+    <canvas id="reelCanvas" class="reel__canvas"></canvas>
+    <div class="reel__fallback" id="reelFallback" hidden></div>
+    <div class="reel__caption">
+      <span id="reelTitle">—</span>
+      <em id="reelPlace"></em>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <div class="work__head" data-reveal>
+      <div>
+        <p class="sec-label">03 — Selected Work</p>
+        <h2 class="h2">The archive</h2>
+      </div>
+      <div class="filters" id="filters" role="tablist" aria-label="Filter work"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="work__more">
+      <button class="btn btn--ghost" id="loadMore" data-magnetic data-cursor="hover">Load more frames</button>
+    </div>
+    <p class="work__note">More work, and the behind-the-scenes of it, lives on <a href="https://www.instagram.com/mabstudiosuk" target="_blank" rel="noopener noreferrer" data-cursor="hover">@mabstudiosuk</a>.</p>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="services__head" data-reveal>
+      <p class="sec-label">04 — What We Shoot</p>
+      <h2 class="h2">How we can<br><em>work together</em></h2>
+      <p class="services__note">Every booking starts with a conversation about the day, the people and the pictures you want to keep. Send the date and we will come back with availability and a quote.</p>
+    </div>
+    <div class="services__grid">
+      <article class="card" data-reveal data-cursor="hover">
+        <span class="card__no">01</span>
+        <h3>Weddings</h3>
+        <p class="card__price">Enquire for 2026<span class="slash">/</span>27 rates</p>
+        <p class="card__body">The whole day, or the parts of it that matter most to you — getting ready, the ceremony, the portraits and the party.</p>
+        <ul>
+          <li>Full-day or part-day coverage</li>
+          <li>Couple portraits on the day</li>
+          <li>Pre-wedding session available</li>
+          <li>Second photographer on request</li>
+        </ul>
+      </article>
+      <article class="card card--feature" data-reveal data-cursor="hover">
+        <span class="card__no">02</span>
+        <span class="card__tag">Most booked</span>
+        <h3>Portraits &amp; Traditional</h3>
+        <p class="card__price">Enquire for session rates</p>
+        <p class="card__body">Studio portraits, personal branding and traditional shoots — aso oke, gele and all. Bring the outfit; we will light it properly.</p>
+        <ul>
+          <li>Studio or location session</li>
+          <li>Solo, couple or group</li>
+          <li>Traditional and cultural attire</li>
+          <li>Headshot crops for professional use</li>
+        </ul>
+      </article>
+      <article class="card" data-reveal data-cursor="hover">
+        <span class="card__no">03</span>
+        <h3>Events</h3>
+        <p class="card__price">Enquire for event rates</p>
+        <p class="card__body">Birthdays, baby showers, christenings and the family gatherings in between — covered without anyone having to pose for us.</p>
+        <ul>
+          <li>Coverage by the hour</li>
+          <li>Baby and milestone shoots</li>
+          <li>Group and family portraits</li>
+          <li>Venue lighting handled</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process">
+    <div class="process__head" data-reveal>
+      <p class="sec-label">05 — How It Works</p>
+      <h2 class="h2">Four steps, no surprises</h2>
+    </div>
+    <ol class="steps">
+      <li data-reveal><span>01</span><h3>Say hello</h3><p>Message us on WhatsApp or send an email with the date, the place and what you have in mind.</p></li>
+      <li data-reveal><span>02</span><h3>Plan it together</h3><p>We agree the coverage, the timings and the shots that matter to you, then confirm the booking.</p></li>
+      <li data-reveal><span>03</span><h3>The shoot</h3><p>We stay out of the way and let the day happen. You will mostly forget we are there — that is the idea.</p></li>
+      <li data-reveal><span>04</span><h3>Your gallery</h3><p>Your edited frames are delivered in a private online gallery, ready to download, print and share.</p></li>
+    </ol>
+  </section>
+
+  <!-- ============ STUDIO / ABOUT ============ -->
+  <section class="studio" id="studio">
+    <div class="studio__media" data-reveal>
+      <div class="studio__frame"><img src="assets/img/ig/ig-09.jpg" alt="Three women photographed together against a warm brown studio backdrop" width="640" height="512" loading="lazy"></div>
+      <div class="studio__inset"><img src="assets/img/ig/ig-06.jpg" alt="A woman in a silver fringed dress against a painted grey backdrop" width="512" height="640" loading="lazy"></div>
+    </div>
+    <div class="studio__text" data-reveal>
+      <p class="sec-label">06 — About</p>
+      <h2 class="h2">Hello — we are<br><em>MAB Studios</em></h2>
+      <p>We are a photography studio based in the United Kingdom, working across portraits, weddings, traditional ceremonies and events. Our lead photographer shoots on Nikon Z and is part of the Nikon Z Creator programme.</p>
+      <p>Much of what we do is Nigerian and British at once — a white gown in the morning and aso oke in the afternoon, a register office and a gele, all in the same day. We light both properly, and we know the order the day runs in.</p>
+      <div class="studio__sign">
+        <div>
+          <strong>MAB Studios</strong>
+          <span>Portraits · Weddings · Events</span>
+        </div>
+        <a href="#contact" class="btn btn--ghost" data-magnetic data-cursor="hover">Work with us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING BAND ============ -->
+  <section class="quote">
+    <div class="quote__bg"><img src="assets/img/ig/ig-04.jpg" alt="" width="480" height="640" loading="lazy"></div>
+    <div class="quote__inner" data-reveal>
+      <blockquote>2026 and 2027 dates are open.</blockquote>
+      <cite>Send yours and we will tell you straight away whether we are free</cite>
+      <div class="quote__actions">
+        <a href="https://wa.me/447562511049" target="_blank" rel="noopener noreferrer" class="btn" data-magnetic data-cursor="hover">WhatsApp us</a>
+        <a href="#contact" class="btn btn--ghost" data-magnetic data-cursor="hover">Send an enquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact__intro" data-reveal>
+      <p class="sec-label">07 — Enquiries</p>
+      <h2 class="h2">Tell us about<br><em>your day</em></h2>
+      <p>The quickest way to reach us is WhatsApp. Send the date, the location and roughly how many people, and we will come back to you with availability.</p>
+      <ul class="contact__list">
+        <li><span>WhatsApp</span><a href="https://wa.me/447562511049" target="_blank" rel="noopener noreferrer" data-cursor="hover">+44 7562 511049</a></li>
+        <li><span>Email</span><a href="mailto:info@mabstudios.co.uk" data-cursor="hover">info@mabstudios.co.uk</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/mabstudiosuk" target="_blank" rel="noopener noreferrer" data-cursor="hover">@mabstudiosuk</a></li>
+        <li><span>Based</span><em>United Kingdom, travelling for bookings</em></li>
+      </ul>
+    </div>
+
+    <form class="form" id="form" novalidate>
+      <div class="form__row">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" required placeholder="First and last name">
+          <small></small>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@email.com">
+          <small></small>
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="field">
+          <label for="date">Date of the shoot</label>
+          <input id="date" name="date" type="date">
+          <small></small>
+        </div>
+        <div class="field">
+          <label for="type">What are we shooting?</label>
+          <select id="type" name="type">
+            <option>Wedding</option>
+            <option>Traditional ceremony</option>
+            <option>Portrait session</option>
+            <option>Personal branding</option>
+            <option>Birthday or event</option>
+            <option>Baby shoot</option>
+            <option>Something else</option>
+          </select>
+          <small></small>
+        </div>
+      </div>
+      <div class="field">
+        <label for="msg">Tell us about it</label>
+        <textarea id="msg" name="message" rows="4" required placeholder="Where is it, roughly how many people, and what does the day look like?"></textarea>
+        <small></small>
+      </div>
+
+      <!-- read by the form service, not by the visitor -->
+      <input type="hidden" name="_subject" value="New enquiry from mabstudios.co.uk">
+      <!-- spam trap: real people never fill this in, bots usually do -->
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="btn btn--full" data-magnetic data-cursor="hover"><span>Send enquiry</span></button>
+      <p class="form__note" id="formNote" role="status" aria-live="polite">This form is not connected to an inbox yet — for now, please use WhatsApp or email above.</p>
+    </form>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot__big" aria-hidden="true">MAB STUDIOS</div>
+  <div class="foot__cols">
+    <div>
+      <span class="foot__h">Studio</span>
+      <p>United Kingdom<br>Travelling for bookings<br>2026 / 2027 open</p>
+    </div>
+    <div>
+      <span class="foot__h">Elsewhere</span>
+      <p><a href="https://www.instagram.com/mabstudiosuk" target="_blank" rel="noopener noreferrer" data-cursor="hover">@mabstudiosuk</a><br><a href="https://wa.me/447562511049" target="_blank" rel="noopener noreferrer" data-cursor="hover">WhatsApp</a></p>
+    </div>
+    <div>
+      <span class="foot__h">Say hello</span>
+      <p><a href="mailto:info@mabstudios.co.uk" data-cursor="hover">info@mabstudios.co.uk</a><br><a href="tel:+447562511049" data-cursor="hover">+44 7562 511049</a></p>
+    </div>
+    <div>
+      <span class="foot__h">Newsletter</span>
+      <p>Occasional emails, all of them pictures.</p>
+      <form class="foot__sub" id="subForm"><input type="email" placeholder="Email address" aria-label="Email address" required><button aria-label="Subscribe" data-cursor="hover">→</button></form>
+    </div>
+  </div>
+  <div class="foot__base">
+    <span>© <span id="year">2026</span> MAB Studios. All photographs our own.</span>
+    <span>Nikon Z Creator</span>
+    <a href="#top" data-cursor="hover">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lb" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <button class="lb__close" id="lbClose" aria-label="Close viewer">✕</button>
+  <button class="lb__nav lb__nav--prev" id="lbPrev" aria-label="Previous photograph">←</button>
+  <button class="lb__nav lb__nav--next" id="lbNext" aria-label="Next photograph">→</button>
+  <figure class="lb__fig">
+    <img id="lbImg" alt="">
+    <figcaption><strong id="lbTitle"></strong><span id="lbPlace"></span><em id="lbCount"></em></figcaption>
+  </figure>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
