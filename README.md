@@ -42,7 +42,7 @@ Mubby Project/
 │  │  └─ main.js          nav, archive, lightbox, forms, reveals
 │  └─ assets/
 │     ├─ img/ig/          the 12 photographs
-│     ├─ fonts/           Cormorant Garamond + Inter, self-hosted
+│     ├─ fonts/           Inter, self-hosted
 │     └─ vendor/          three.js r160
 └─ build/                 output of build-artifact.js
 ```
@@ -75,12 +75,13 @@ came from:
 | `--ash` | `#0d0a08` | the warm near-black of the tuxedo and car |
 | `--paper` / `--linen` | `#e8e4dc` / `#f0ebe3` | the grey seamless behind the studio portraits |
 | `--candle` | `#e2b087` | the warm highlight on skin and aso oke |
-| `--gele` | `#6b070b` | the deep red of the gele and beaded corset |
-| `--emerald` | `#06665a` | the green backdrop behind the cream gown |
-| `--sienna` | `#804125` | the woven stripe and the brown seamless |
+| `--candle-deep` | `#8a5a34` | the same hue, dark enough to read on the light panels |
 
-Candlelight is the accent on dark sections, emerald on the light ones, and
-Gele Red is spent in exactly one place — the featured service card.
+**One accent, one typeface.** An earlier version also used a deep red and
+an emerald pulled from the gele and the studio backdrop, and paired a
+serif with a sans. Both were cut: the colour on this site should come
+from the photographs, not from the chrome around them. `palette.js` still
+reports every recurring colour if you want to reconsider that.
 
 ## Changing things
 

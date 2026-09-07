@@ -23,7 +23,7 @@ const SMALL  = path.join(ROOT, 'site', 'assets', 'img', 'ig');
 const OUT    = path.join(ROOT, 'build', 'mab-studios.html');
 
 const THREE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.1/three.min.js';
-const FONTS_CDN = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Inter:wght@300;400;500;600&display=swap';
+const FONTS_CDN = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap';
 
 const read = p => fs.readFileSync(p, 'utf8');
 

@@ -35,24 +35,6 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse  = window.matchMedia('(hover: none)').matches;
 
-/* ================= PRELOADER ================= */
-const loader = $('#loader'), loaderBar = $('#loaderBar'), loaderPct = $('#loaderPct');
-
-function preload(list) {
-  let done = 0;
-  const step = () => {
-    done++;
-    const pct = Math.round((done / list.length) * 100);
-    loaderBar.style.width = pct + '%';
-    loaderPct.textContent = pct;
-  };
-  return Promise.all(list.map(src => new Promise(res => {
-    const img = new Image();
-    img.onload = img.onerror = () => { step(); res(); };
-    img.src = src;
-  })));
-}
-
 /* ================= CUSTOM CURSOR ================= */
 function initCursor() {
   if (coarse || reduced) { $('#cursor').remove(); return { setLabel() {}, drag() {} }; }
@@ -292,6 +274,26 @@ function initForm() {
     input.addEventListener('input', () => { if (input.closest('.field').classList.contains('has-error')) check(input); });
   });
 
+  /* ---- date field ----
+     The native control is fiddly: the calendar only opens from the small
+     icon, and an empty field still shows dd/mm/yyyy at full strength. */
+  const date = form.elements.date;
+  if (date) {
+    const today = new Date();
+    date.min = today.toISOString().slice(0, 10);              /* no past dates */
+    today.setFullYear(today.getFullYear() + 3);
+    date.max = today.toISOString().slice(0, 10);
+
+    const markEmpty = () => date.classList.toggle('is-empty', !date.value);
+    markEmpty();
+    date.addEventListener('input', markEmpty);
+    date.addEventListener('change', markEmpty);
+
+    /* tapping anywhere in the field opens the picker, not just the icon */
+    date.addEventListener('click', () => { try { date.showPicker(); } catch {} });
+    date.addEventListener('focus', () => { try { date.showPicker(); } catch {} });
+  }
+
   const btn = $('button[type="submit"] span', form) || $('button[type="submit"]', form);
   const btnLabel = btn.textContent;
 
@@ -469,13 +471,9 @@ function initReel(cursor) {
   initGrid(revealIO);
   initForm();
 
-  /* hold the curtain until the first frames are actually decoded */
-  await preload([...HERO_SLIDES.map(s => s.src), ...PHOTOS.slice(0, 6).map(p => p.src)]);
+  /* the page is readable straight away; the hero paints in behind it */
+  document.documentElement.classList.add('is-ready');
 
   await initHero();
   initReel(cursor);
-
-  loader.classList.add('is-done');
-  document.documentElement.classList.add('is-ready');
-  setTimeout(() => loader.remove(), 900);
 })();
