@@ -78,10 +78,6 @@
 
   <!-- ============ HERO (WebGL) ============ -->
   <section class="hero" id="hero">
-    <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
-    <div class="hero__fallback" id="heroFallback" aria-hidden="true"></div>
-    <div class="hero__scrim"></div>
-
     <div class="hero__content">
       <p class="hero__eyebrow"><span class="line"></span> Photography Studio · United Kingdom</p>
       <h1 class="hero__title">
@@ -95,15 +91,23 @@
       </div>
     </div>
 
-    <div class="hero__meta">
-      <div class="hero__slide-info">
-        <span class="hero__slide-idx" id="heroIdx">01</span>
-        <div>
-          <strong id="heroLabel">Black Tie, White Cape</strong>
-          <em id="heroPlace">Wedding portrait</em>
+    <!-- The photographs are portrait 4:5. The frame is portrait too, so
+         they are shown whole instead of being cropped to a letterbox. -->
+    <div class="hero__media">
+      <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__fallback" id="heroFallback" aria-hidden="true"></div>
+      <div class="hero__scrim"></div>
+
+      <div class="hero__meta">
+        <div class="hero__slide-info">
+          <span class="hero__slide-idx" id="heroIdx">01</span>
+          <div>
+            <strong id="heroLabel">Black Tie, White Cape</strong>
+            <em id="heroPlace">Wedding portrait</em>
+          </div>
         </div>
+        <div class="hero__dots" id="heroDots"></div>
       </div>
-      <div class="hero__dots" id="heroDots"></div>
     </div>
 
     <a href="#reel" class="hero__scroll" data-cursor="hover"><span>Scroll</span><i></i></a>
