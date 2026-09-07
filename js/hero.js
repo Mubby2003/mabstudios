@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
-   hero.js — full-bleed WebGL slideshow.
-   A single full-screen plane cross-dissolves between photographs with
+   hero.js — WebGL slideshow for the hero panel.
+   A single plane cross-dissolves between photographs with
    a noise-driven wipe, a slow Ken Burns push, mouse parallax, film
    grain and a vignette. Falls back to CSS backgrounds without WebGL.
 ------------------------------------------------------------------ */
@@ -140,7 +140,7 @@ export function createHero({ canvas, slides, onChange, dwell = 5200, fade = 1600
     uMouse:    { value: new THREE.Vector2(0, 0) },
     uProgress: { value: 0 },
     uTime:     { value: 0 },
-    uZoomA:    { value: 1.06 },
+    uZoomA:    { value: 1.035 },
     uZoomB:    { value: 1.0 },
     uReveal:   { value: 0 }
   };
@@ -196,7 +196,7 @@ export function createHero({ canvas, slides, onChange, dwell = 5200, fade = 1600
     next = (target + textures.length) % textures.length;
     if (!textures[next]) return;                   /* still streaming in */
     setTex(1, textures[next]);
-    uniforms.uZoomB.value = 1.07;
+    uniforms.uZoomB.value = 1.04;
     transitioning = true;
     tStart = performance.now();
   }

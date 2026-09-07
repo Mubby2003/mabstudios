@@ -604,3 +604,81 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
 @media (prefers-reduced-motion:reduce){
   .foot__mark{cursor:default}
 }
+
+/* ==================================================================
+   21. HERO — REBUILT FOR PORTRAIT PHOTOGRAPHS
+
+   The archive is shot 4:5. A full-bleed landscape hero had to scale
+   those images until their width filled the screen, which cut roughly
+   half the height away — heads, gele and hands all fell outside the
+   frame. The picture now sits in a portrait panel beside the type, so
+   it is shown whole.
+================================================================== */
+.hero{
+  min-height:auto;height:auto;
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  align-items:center;
+  gap:clamp(2rem,5vw,5rem);
+  padding:clamp(7rem,14vh,10rem) var(--pad) clamp(4rem,8vh,6rem);
+  overflow:visible;
+}
+.hero__content{
+  position:relative;z-index:2;padding:0;max-width:none;
+}
+.hero__media{
+  position:relative;
+  width:100%;
+  max-width:min(100%,540px);
+  margin-inline:auto;
+  aspect-ratio:4 / 5;          /* matches the source photographs */
+  overflow:hidden;
+  background:var(--ash-2);
+}
+.hero__canvas{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+}
+.hero__fallback{position:absolute;inset:0}
+
+/* the type no longer sits on the picture, so the scrim is only a vignette
+   to seat the panel against the page and keep the caption legible */
+.hero__scrim{
+  background:
+    linear-gradient(to top,rgba(13,10,8,.75) 0%,rgba(13,10,8,0) 38%),
+    radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(13,10,8,.35) 100%);
+}
+
+.hero__title{max-width:none}
+.hero__sub{max-width:38ch}
+
+/* caption sits inside the frame now */
+.hero__meta{
+  position:absolute;right:1.25rem;bottom:1.1rem;left:1.25rem;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
+  text-align:left;
+}
+.hero__slide-info{gap:.75rem}
+.hero__slide-idx{font-size:1.5rem}
+.hero__dots{flex:none}
+
+.hero__scroll{
+  position:static;grid-column:1 / -1;justify-self:start;
+  margin-top:clamp(1.5rem,4vh,3rem);
+}
+
+@media (max-width:860px){
+  .hero{
+    grid-template-columns:1fr;
+    padding:clamp(6rem,12vh,8rem) var(--pad) 3rem;
+    gap:2.25rem;
+  }
+  /* picture first on a phone: it is the reason anyone is here */
+  .hero__media{order:-1;max-width:min(100%,420px);aspect-ratio:4 / 5}
+  .hero__meta{display:flex}
+  .hero__title{font-size:clamp(2.2rem,8vw,3.2rem)}
+}
+@media (max-width:420px){
+  .hero__meta{left:.9rem;right:.9rem;bottom:.85rem}
+  .hero__slide-idx{font-size:1.2rem}
+  .hero__slide-info strong{font-size:.76rem}
+}
