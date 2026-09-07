@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — MAB Studios</title>
+<meta name="theme-color" content="#0d0a08">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0a08'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23e2b087' stroke-width='6'/><circle cx='50' cy='50' r='9' fill='%23e2b087'/></svg>">
+<style>
+  :root{
+    --ash:#0d0a08; --linen:#f0ebe3; --mute:#948b83; --candle:#e2b087;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100svh;background:var(--ash);color:var(--linen);
+    font-family:var(--sans);font-weight:300;
+    display:grid;place-items:center;padding:2rem;text-align:center;
+  }
+  .mark{font-family:var(--serif);font-size:1.4rem;letter-spacing:.2em;margin-bottom:2.5rem}
+  .mark em{color:var(--candle);font-style:normal}
+  h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,10vw,5rem);line-height:1;margin:0 0 1rem}
+  h1 em{color:var(--candle)}
+  p{color:var(--mute);max-width:32ch;margin:0 auto 2.5rem;line-height:1.7}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:1rem 2rem;border:1px solid var(--linen);border-radius:100px;
+    color:var(--linen);text-decoration:none;
+    font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    transition:background .4s ease,color .4s ease;
+  }
+  .btn:hover,.btn:focus-visible{background:var(--linen);color:var(--ash)}
+  .alt{display:block;margin-top:1.6rem;font-size:.8rem;color:var(--mute)}
+  .alt a{color:var(--candle);text-decoration:none}
+  .alt a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+  <main>
+    <div class="mark">M<em>A</em>B</div>
+    <h1>Nothing in <em>this frame</em></h1>
+    <p>That page does not exist — it may have moved, or the link may have been mistyped.</p>
+    <a class="btn" href="/">Back to the studio</a>
+    <span class="alt">Or message us on <a href="https://wa.me/447562511049">WhatsApp</a></span>
+  </main>
+</body>
+</html>
