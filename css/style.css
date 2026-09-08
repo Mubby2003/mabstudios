@@ -218,7 +218,19 @@ section{position:relative}
 .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.15rem 0;background:var(--ash-2)}
 .marquee__track{display:flex;width:max-content;animation:marquee 38s linear infinite}
 .marquee__track span{font-family:var(--sans);font-size:clamp(1.4rem,3vw,2.4rem);padding-right:2rem;white-space:nowrap}
-.marquee__track i{color:var(--candle);font-style:normal;padding:0 .4rem}
+/* The separator used to be the character U+2733. iOS renders that with
+   emoji presentation — a green box drawn by the system font, which
+   ignores `color` — while desktop showed the text glyph in the accent
+   colour. Same character, two different things. Drawn in CSS instead,
+   so it is identical everywhere and takes the palette. */
+.marquee__track i{
+  display:inline-block;
+  width:.32em;height:.32em;
+  margin:0 .62em .12em;
+  background:var(--candle);
+  transform:rotate(45deg);
+  vertical-align:middle;
+}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ---------- INTRO ---------- */
