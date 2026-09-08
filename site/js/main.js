@@ -229,7 +229,7 @@ function initGrid(revealIO) {
       fig.setAttribute('data-cursor', 'hover');
       fig.setAttribute('tabindex', '0');
       fig.innerHTML = `
-        <img src="${p.src}" alt="${p.title} — ${p.place}" width="${p.w}" height="${p.h}" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async">
+        <img src="${p.src}" alt="${p.title} — ${p.place}" width="${p.w}" height="${p.h}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">
         <span class="tile__veil"></span>
         <span class="tile__year">${p.year}</span>
         <figcaption class="tile__cap"><strong>${p.title}</strong><span>${p.place}</span></figcaption>`;
