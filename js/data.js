@@ -21,24 +21,24 @@ export const CATEGORIES = [
 
 export const PHOTOS = [
   /* --- Weddings ---------------------------------------------------- */
-  { src: 'assets/img/ig/ig-01.jpg', w: 1203, h: 1500, cat: 'weddings',    title: 'Black Tie, White Cape', place: 'Wedding portrait',   year: '2026' },
-  { src: 'assets/img/ig/ig-02.jpg', w: 1200, h: 1500, cat: 'weddings',    title: 'Out of the Pavilion',   place: 'Wedding day',        year: '2025' },
-  { src: 'assets/img/ig/ig-03.jpg', w: 1125, h: 1500, cat: 'weddings',    title: 'Held Close',            place: 'Pre-wedding',        year: '2025' },
+  { src: 'assets/img/ig/ig-01.jpg', w: 1203, h: 1500, cat: 'weddings',    title: 'Black Tie, White Cape', place: 'Wedding portrait',   venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-02.jpg', w: 1200, h: 1500, cat: 'weddings',    title: 'Out of the Pavilion',   place: 'Wedding day',        venue: '',      year: '2025' },
+  { src: 'assets/img/ig/ig-03.jpg', w: 1125, h: 1500, cat: 'weddings',    title: 'Held Close',            place: 'Pre-wedding',        venue: '',      year: '2025' },
 
   /* --- Traditional ------------------------------------------------- */
-  { src: 'assets/img/ig/ig-08.jpg', w: 1125, h: 1500, cat: 'traditional', title: 'Red Gele',              place: 'Traditional bridal', year: '2026' },
-  { src: 'assets/img/ig/ig-07.jpg', w: 1125, h: 1500, cat: 'traditional', title: 'Aso Oke, Two Ways',     place: 'Traditional couple', year: '2026' },
+  { src: 'assets/img/ig/ig-08.jpg', w: 1125, h: 1500, cat: 'traditional', title: 'Red Gele',              place: 'Traditional bridal', venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-07.jpg', w: 1125, h: 1500, cat: 'traditional', title: 'Aso Oke, Two Ways',     place: 'Traditional couple', venue: '',      year: '2026' },
 
   /* --- Portraits --------------------------------------------------- */
-  { src: 'assets/img/ig/ig-05.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Emerald',               place: 'Studio portrait',    year: '2026' },
-  { src: 'assets/img/ig/ig-06.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Silver Fringe',         place: 'Studio portrait',    year: '2026' },
-  { src: 'assets/img/ig/ig-09.jpg', w: 1500, h: 1200, cat: 'portraits',   title: 'Three',                 place: 'Group portrait',     year: '2026' },
-  { src: 'assets/img/ig/ig-10.jpg', w: 1125, h: 1500, cat: 'portraits',   title: 'Rose Gold',             place: 'Studio portrait',    year: '2026' },
-  { src: 'assets/img/ig/ig-12.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Mint',                  place: 'Personal branding',  year: '2026' },
+  { src: 'assets/img/ig/ig-05.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Emerald',               place: 'Studio portrait',    venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-06.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Silver Fringe',         place: 'Studio portrait',    venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-09.jpg', w: 1500, h: 1200, cat: 'portraits',   title: 'Three',                 place: 'Group portrait',     venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-10.jpg', w: 1125, h: 1500, cat: 'portraits',   title: 'Rose Gold',             place: 'Studio portrait',    venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-12.jpg', w: 1200, h: 1500, cat: 'portraits',   title: 'Mint',                  place: 'Personal branding',  venue: '',      year: '2026' },
 
   /* --- Events ------------------------------------------------------ */
-  { src: 'assets/img/ig/ig-11.jpg', w: 1125, h: 1500, cat: 'events',      title: 'Make a Wish',           place: 'Birthday shoot',     year: '2026' },
-  { src: 'assets/img/ig/ig-04.jpg', w: 1125, h: 1500, cat: 'events',      title: 'Dance in the Park',     place: 'Celebration',        year: '2026' }
+  { src: 'assets/img/ig/ig-11.jpg', w: 1125, h: 1500, cat: 'events',      title: 'Make a Wish',           place: 'Birthday shoot',     venue: '',      year: '2026' },
+  { src: 'assets/img/ig/ig-04.jpg', w: 1125, h: 1500, cat: 'events',      title: 'Dance in the Park',     place: 'Celebration',        venue: '',      year: '2026' }
 ];
 
 /* The hero cycles through these, in order. */
