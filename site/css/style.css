@@ -694,3 +694,10 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
   .hero__slide-idx{font-size:1.2rem}
   .hero__slide-info strong{font-size:.76rem}
 }
+
+/* venue line under the archive caption, shown only when one is recorded */
+.tile__venue{
+  display:block;margin-top:.2rem;
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(240,235,227,.72);font-style:normal;
+}

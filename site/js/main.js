@@ -182,7 +182,7 @@ const lb = {
     next.src = p.src;
     this.img.alt = `${p.title || 'Photograph'} — ${p.place || ''}`;
     this.title.textContent = p.title || '';
-    this.place.textContent = p.place || '';
+    this.place.textContent = p.venue ? `${p.place} · ${p.venue}` : (p.place || '');
     this.count.textContent = `${String(this.i + 1).padStart(2, '0')} / ${String(this.list.length).padStart(2, '0')}`;
   }
 };
@@ -228,11 +228,13 @@ function initGrid(revealIO) {
       fig.className = 'tile';
       fig.setAttribute('data-cursor', 'hover');
       fig.setAttribute('tabindex', '0');
+      /* venue is optional — the caption falls back to the shoot type alone */
+      const where = p.venue ? `${p.place} · ${p.venue}` : p.place;
       fig.innerHTML = `
-        <img src="${p.src}" alt="${p.title} — ${p.place}" width="${p.w}" height="${p.h}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">
+        <img src="${p.src}" alt="${p.title} — ${where}" width="${p.w}" height="${p.h}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">
         <span class="tile__veil"></span>
         <span class="tile__year">${p.year}</span>
-        <figcaption class="tile__cap"><strong>${p.title}</strong><span>${p.place}</span></figcaption>`;
+        <figcaption class="tile__cap"><strong>${p.title}</strong><span>${p.place}</span>${p.venue ? `<em class="tile__venue">${p.venue}</em>` : ''}</figcaption>`;
       const open = () => lb.open(list, i);
       fig.addEventListener('click', open);
       fig.addEventListener('keydown', e => { if (e.key === 'Enter') open(); });

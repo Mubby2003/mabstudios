@@ -1,0 +1,247 @@
+<title>Photography Website Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+  :root{
+    --ground:#faf8f5;
+    --panel:#ffffff;
+    --ink:#1c1a17;
+    --ink-2:#4a453e;
+    --ink-3:#7b7469;
+    --rule:#e2ddd4;
+    --accent:#8a5a34;
+    --accent-soft:#f0e6dc;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#141210; --panel:#1c1917; --ink:#f2ece4; --ink-2:#c3bab0;
+      --ink-3:#8e857a; --rule:#2f2a25; --accent:#e2b087; --accent-soft:#2a211a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141210; --panel:#1c1917; --ink:#f2ece4; --ink-2:#c3bab0;
+    --ink-3:#8e857a; --rule:#2f2a25; --accent:#e2b087; --accent-soft:#2a211a;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);font-weight:300;line-height:1.65;
+    font-size:16px;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:52rem;margin:0 auto;padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2.5rem) 5rem}
+
+  header.top{border-bottom:2px solid var(--ink);padding-bottom:1.6rem;margin-bottom:2.5rem}
+  .eyebrow{
+    font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 .7rem;
+  }
+  h1{
+    font-family:var(--serif);font-weight:300;font-size:clamp(2rem,1.2rem+3vw,3.1rem);
+    line-height:1.08;letter-spacing:-.02em;margin:0 0 .8rem;text-wrap:balance;
+  }
+  .lede{font-size:1.02rem;color:var(--ink-2);max-width:44ch;margin:0}
+
+  .meta{
+    display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin-top:1.6rem;
+    font-size:.78rem;color:var(--ink-3);
+  }
+  .meta b{font-weight:500;color:var(--ink-2)}
+
+  section{margin:0 0 2.75rem}
+  h2{
+    font-family:var(--serif);font-weight:400;font-size:1.5rem;letter-spacing:-.01em;
+    margin:0 0 .3rem;display:flex;align-items:baseline;gap:.7rem;
+  }
+  h2 .num{
+    font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.1em;
+    color:var(--accent);border:1px solid var(--rule);border-radius:100px;
+    padding:.2rem .55rem;flex:none;
+  }
+  .why{font-size:.85rem;color:var(--ink-3);margin:0 0 1.1rem;max-width:52ch}
+
+  ol.q{list-style:none;counter-reset:q;margin:0;padding:0;display:grid;gap:.55rem}
+  ol.q li{
+    counter-increment:q;position:relative;padding:.75rem 1rem .75rem 2.4rem;
+    background:var(--panel);border:1px solid var(--rule);border-radius:4px;
+    font-size:.94rem;color:var(--ink-2);
+  }
+  ol.q li::before{
+    content:counter(q,decimal-leading-zero);
+    position:absolute;left:.85rem;top:.82rem;
+    font-size:.68rem;font-weight:500;color:var(--ink-3);font-variant-numeric:tabular-nums;
+  }
+  ol.q li strong{color:var(--ink);font-weight:500}
+
+  .checklist{display:grid;gap:.5rem;margin:0;padding:0;list-style:none}
+  .checklist li{
+    display:flex;gap:.8rem;align-items:flex-start;
+    padding:.7rem .9rem;border:1px solid var(--rule);border-radius:4px;background:var(--panel);
+    font-size:.92rem;
+  }
+  .checklist .box{
+    flex:none;width:15px;height:15px;border:1.5px solid var(--ink-3);border-radius:3px;margin-top:.28rem;
+  }
+  .checklist .spec{display:block;font-size:.78rem;color:var(--ink-3);margin-top:.15rem}
+
+  .callout{
+    border-left:3px solid var(--accent);background:var(--accent-soft);
+    padding:1rem 1.2rem;margin:1.2rem 0 0;border-radius:0 4px 4px 0;
+    font-size:.9rem;color:var(--ink-2);
+  }
+  .callout b{color:var(--ink)}
+
+  table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.5rem}
+  th,td{text-align:left;padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+  th{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  td:first-child{font-weight:500;color:var(--ink);white-space:nowrap}
+  .scroller{overflow-x:auto}
+
+  footer.end{
+    margin-top:3.5rem;padding-top:1.5rem;border-top:1px solid var(--rule);
+    font-size:.8rem;color:var(--ink-3);
+  }
+  @media print{
+    body{background:#fff}
+    .wrap{padding:0}
+    ol.q li,.checklist li{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Project Brief · Website Discovery</p>
+  <h1>Before we build the site, some questions</h1>
+  <p class="lede">Answer what you can. Anything left blank just means we decide it together on the call — nothing here is a test.</p>
+  <div class="meta">
+    <span><b>Project</b> MAB Studios website</span>
+    <span><b>Domain</b> mabstudios.co.uk</span>
+    <span><b>Return to</b> your developer</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span> What the site is for</h2>
+  <p class="why">This decides everything else. A site built to win wedding bookings looks nothing like one built to show a portfolio.</p>
+  <ol class="q">
+    <li>If the site does <strong>one job</strong> well in its first year, what is that job? Booked weddings, studio sessions, brand clients, or simply looking established?</li>
+    <li>How do people find and book you <strong>today</strong> — Instagram DMs, WhatsApp, word of mouth, referrals?</li>
+    <li>What do you want the site to change about that?</li>
+    <li>Roughly how many bookings a year would make this worth it?</li>
+    <li>Is there a type of work you want <strong>more</strong> of, or any you want to stop being asked for?</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">02</span> Who it is for</h2>
+  <p class="why">Couples planning a wedding, a founder needing headshots and a mother booking a baby shoot want completely different things from the same page.</p>
+  <ol class="q">
+    <li>Describe your <strong>ideal client</strong>. Age, where they live, what the occasion is.</li>
+    <li>What are they nervous about before they book a photographer?</li>
+    <li>What question do you get asked <strong>most often</strong> before someone books?</li>
+    <li>Which other photographers do clients compare you against? Links welcome.</li>
+    <li>Do you serve one area or travel? Are there cities or venues worth naming?</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">03</span> What makes you different</h2>
+  <p class="why">This becomes the words on the page. Written in your voice it reads as you; written in mine it reads as a template.</p>
+  <ol class="q">
+    <li>How would you describe your work to a friend, out loud, in one sentence?</li>
+    <li>What do clients say afterwards — is there a compliment you hear repeatedly?</li>
+    <li>What do you do that other studios in your area do not?</li>
+    <li>Being both British and Nigerian in your work — how much should the site lead with that?</li>
+    <li>Any words you want on the site, or words you would never use?</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">04</span> What we need from you</h2>
+  <p class="why">This is the part that decides how fast the site gets finished. Everything else I can build; only you can supply these.</p>
+  <ul class="checklist">
+    <li><span class="box"></span><span><strong>Photographs — the big one.</strong><span class="spec">40–60 images if possible. JPEG, long edge 2400px, quality 80, sRGB. Straight from Lightroom, not downloaded from Instagram. Include some landscape frames and some detail shots, not only portraits.</span></span></li>
+    <li><span class="box"></span><span><strong>Two or three complete shoots</strong><span class="spec">A whole wedding or session, start to finish. Couples want proof you can cover a full day, not a highlights reel.</span></span></li>
+    <li><span class="box"></span><span><strong>Client reviews</strong><span class="spec">Real quotes with a first name and the type of shoot. Screenshots from WhatsApp or Instagram are fine — I will transcribe them.</span></span></li>
+    <li><span class="box"></span><span><strong>Prices, or a starting price</strong><span class="spec">Even "weddings from £X" changes results. Hiding prices is the most common reason people leave a photographer's site.</span></span></li>
+    <li><span class="box"></span><span><strong>Logo files</strong><span class="spec">SVG or PNG with a transparent background, if a logo exists.</span></span></li>
+    <li><span class="box"></span><span><strong>A short about paragraph</strong><span class="spec">Who you are and how you got here. Voice notes are fine — I will write it up.</span></span></li>
+    <li><span class="box"></span><span><strong>A photograph of you</strong><span class="spec">People book a person, not a studio.</span></span></li>
+    <li><span class="box"></span><span><strong>Business details to publish</strong><span class="spec">Contact email, phone, service area, company number and VAT number if registered.</span></span></li>
+    <li><span class="box"></span><span><strong>Model permission</strong><span class="spec">Confirmation that the people in these photographs are happy to appear on a public website.</span></span></li>
+  </ul>
+  <div class="callout"><b>The single biggest lever.</b> The site currently runs on twelve images copied from Instagram at 640 pixels. Full-resolution originals will improve it more than any redesign, effect or new section.</div>
+</section>
+
+<section>
+  <h2><span class="num">05</span> What goes on it</h2>
+  <p class="why">So we agree the shape before anything is built, rather than adding pages later.</p>
+  <ol class="q">
+    <li>Is one long page enough, or do you want separate pages for <strong>Weddings, Portraits and Events</strong>?</li>
+    <li>Do you want <strong>prices listed</strong>, or an enquiry-only approach?</li>
+    <li>Should there be a <strong>journal or blog</strong>? Useful for search, but only if you will write it.</li>
+    <li>Do you need <strong>private client galleries</strong> — password-protected sets for delivering photographs?</li>
+    <li>Should people be able to <strong>book and pay a deposit</strong> online, or just enquire?</li>
+    <li>An FAQ page? It answers the questions from section 02 and saves you repeating yourself.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">06</span> How it should feel</h2>
+  <ol class="q">
+    <li>Three photography websites you like — and specifically what you like about each.</li>
+    <li>One you dislike, and why.</li>
+    <li>Dark and cinematic, or light and editorial?</li>
+    <li>How much movement do you want? Animation can feel expensive or it can feel like it is trying too hard.</li>
+    <li>Any colours tied to your brand already, from cards, prints or your logo?</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">07</span> The practical side</h2>
+  <ol class="q">
+    <li>Who should <strong>own the domain and hosting accounts</strong>? My recommendation is that you do, with me added as a collaborator — so nothing depends on me being reachable.</li>
+    <li>Which inbox should <strong>enquiries arrive in</strong>?</li>
+    <li>Do you want to <strong>update the site yourself</strong> — adding photographs without asking me? This is the main thing that decides how it gets built.</li>
+    <li>Do you need <strong>Google Analytics</strong>, or is knowing enquiries arrive enough?</li>
+    <li>Are you registered with <strong>Google Business Profile</strong>? It matters more than the website for local searches.</li>
+    <li>Do you have a <strong>privacy policy</strong>? A contact form collecting names and emails needs one under UK GDPR.</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">08</span> Timing and money</h2>
+  <ol class="q">
+    <li>Is there a <strong>date this needs to be live</strong> — a wedding fair, a season, a campaign?</li>
+    <li>What budget range are you working to?</li>
+    <li>Who signs off? If it is more than one person, say so now.</li>
+    <li>After launch, do you want <strong>ongoing help</strong> — updates, new galleries, fixes — or hand it over entirely?</li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="num">09</span> What happens next</h2>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>Stage</th><th>What happens</th><th>Who</th></tr></thead>
+      <tbody>
+        <tr><td>Brief</td><td>You answer what you can and send the photographs</td><td>You</td></tr>
+        <tr><td>Call</td><td>We go through the gaps together, agree scope and price</td><td>Both</td></tr>
+        <tr><td>Build</td><td>Structure, then design, then content</td><td>Me</td></tr>
+        <tr><td>Review</td><td>You see it on a live link and give one round of notes</td><td>You</td></tr>
+        <tr><td>Launch</td><td>Domain pointed, forms tested, analytics on</td><td>Me</td></tr>
+        <tr><td>After</td><td>Agreed support period, then whatever we arrange</td><td>Both</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="end">
+  Prepared for MAB Studios · mabstudios.co.uk · Answer inline, or reply with the numbers and your answers — whichever is quicker.
+</footer>
+
+</div>
