@@ -706,3 +706,9 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
    author rule setting display (e.g. .contact__list li{display:grid}) beats
    it and the element shows anyway. This makes hidden mean hidden. */
 [hidden]{display:none !important}
+
+/* optional-field hint sitting inside the label */
+.field label .opt{
+  font-style:normal;text-transform:none;letter-spacing:.02em;
+  color:rgba(148,139,131,.8);font-size:.92em;
+}
