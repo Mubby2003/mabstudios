@@ -2,7 +2,7 @@
    main.js — everything that is not a shader: preloader, cursor, nav,
    filtered archive, lightbox, reveals, counters, forms.
 ------------------------------------------------------------------ */
-import { CATEGORIES, PHOTOS, HERO_SLIDES, REEL } from './data.js';
+import { CATEGORIES, PHOTOS, HERO_SLIDES, REEL, img, srcsetFor } from './data.js';
 import { createHero } from './hero.js';
 import { createReel } from './gallery3d.js';
 import { createWordmark } from './wordmark.js';
@@ -192,10 +192,12 @@ const lb = {
   step(d) { this.i = (this.i + d + this.list.length) % this.list.length; this.render(); },
   render() {
     const p = this.list[this.i];
+    /* PHOTOS rows carry a base name, REEL items an already-resolved file */
+    const file = p.full || (p.src.endsWith('.jpg') ? p.src : img(p.src, 1500));
     this.img.style.opacity = 0;
     const next = new Image();
-    next.onload = () => { this.img.src = p.src; this.img.style.opacity = ''; };
-    next.src = p.src;
+    next.onload = () => { this.img.src = file; this.img.style.opacity = ''; };
+    next.src = file;
     this.img.alt = `${p.title || 'Photograph'} — ${p.place || ''}`;
     this.title.textContent = p.title || '';
     this.place.textContent = p.venue ? `${p.place} · ${p.venue}` : (p.place || '');
@@ -246,8 +248,14 @@ function initGrid(revealIO) {
       fig.setAttribute('tabindex', '0');
       /* venue is optional — the caption falls back to the shoot type alone */
       const where = p.venue ? `${p.place} · ${p.venue}` : p.place;
+      /* The grid is 3 columns on a laptop, 2 on a tablet, 1 on a phone — so a
+         tile is never much wider than a third of the viewport. `sizes` tells
+         the browser that before it picks a file, which is the whole point. */
       fig.innerHTML = `
-        <img src="${p.src}" alt="${p.title} — ${where}" width="${p.w}" height="${p.h}" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">
+        <img src="${img(p.src, 800)}" srcset="${srcsetFor(p.src)}"
+             sizes="(max-width: 700px) 70vw, (max-width: 1100px) 46vw, 31vw"
+             alt="${p.title} — ${where}" width="${p.w}" height="${p.h}"
+             loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async">
         <span class="tile__veil"></span>
         <span class="tile__year">${p.year}</span>
         <figcaption class="tile__cap"><strong>${p.title}</strong><span>${p.place}</span>${p.venue ? `<em class="tile__venue">${p.venue}</em>` : ''}</figcaption>`;
