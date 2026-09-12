@@ -270,8 +270,12 @@ function initForm() {
   const rules = {
     name:    v => v.trim().length > 1 || 'Please tell us what to call you.',
     email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'That email does not look right.',
+    /* deliberately loose: UK mobiles, landlines and +44 forms all vary, and
+       rejecting a real number is far worse than accepting an odd one */
+    phone:   v => (v.replace(/\D/g, '').length >= 7) || 'A number we can reach you on, please.',
     message: v => v.trim().length > 9 || 'A sentence or two is plenty.'
   };
+  const REQUIRED = ['name', 'email', 'phone', 'message'];
 
   /* the standing note only promises an inbox once one is configured */
   if (ENQUIRY_ENDPOINT) {
@@ -324,7 +328,7 @@ function initForm() {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    const ok = ['name', 'email', 'message'].map(n => check(form.elements[n])).every(Boolean);
+    const ok = REQUIRED.map(n => check(form.elements[n])).every(Boolean);
     if (!ok) { say('Almost — a couple of fields need another look.'); return; }
 
     const first = form.elements.name.value.trim().split(' ')[0];

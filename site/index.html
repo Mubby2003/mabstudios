@@ -294,27 +294,56 @@
       </div>
       <div class="form__row">
         <div class="field">
+          <label for="phone">Phone <em class="opt">so we can call you back</em></label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="07… or +44…">
+          <small></small>
+        </div>
+        <div class="field">
           <label for="date">Date of the shoot</label>
           <input id="date" name="date" type="date">
           <small></small>
         </div>
+      </div>
+      <div class="form__row">
         <div class="field">
           <label for="type">What are we shooting?</label>
-          <select id="type" name="type">
-            <option>Wedding</option>
+          <select id="type" name="package">
+            <option>Wedding — full day</option>
+            <option>Wedding — part day</option>
             <option>Traditional ceremony</option>
+            <option>Engagement or pre-wedding</option>
             <option>Portrait session</option>
-            <option>Personal branding</option>
+            <option>Personal branding or headshots</option>
+            <option>Maternity</option>
+            <option>Baby or family shoot</option>
             <option>Birthday or event</option>
-            <option>Baby shoot</option>
             <option>Something else</option>
+          </select>
+          <small></small>
+        </div>
+        <div class="field">
+          <label for="source">How did you hear about us?</label>
+          <select id="source" name="heard_about_us">
+            <option value="">Choose one…</option>
+            <option>Instagram</option>
+            <option>TikTok</option>
+            <option>Google search</option>
+            <option>Through a friend</option>
+            <option>A past client referred me</option>
+            <option>A venue or supplier</option>
+            <option>Somewhere else</option>
           </select>
           <small></small>
         </div>
       </div>
       <div class="field">
+        <label for="place">Where is it? <em class="opt">venue, town or city</em></label>
+        <input id="place" name="location" type="text" placeholder="Venue name, or just the town">
+        <small></small>
+      </div>
+      <div class="field">
         <label for="msg">Tell us about it</label>
-        <textarea id="msg" name="message" rows="4" required placeholder="Where is it, roughly how many people, and what does the day look like?"></textarea>
+        <textarea id="msg" name="message" rows="4" required placeholder="Roughly how many people, what the day looks like, and anything that matters to you."></textarea>
         <small></small>
       </div>
 
