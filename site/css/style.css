@@ -701,3 +701,8 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
   font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
   color:rgba(240,235,227,.72);font-style:normal;
 }
+
+/* The `hidden` attribute is only display:none in the UA stylesheet, so any
+   author rule setting display (e.g. .contact__list li{display:grid}) beats
+   it and the element shows anyway. This makes hidden mean hidden. */
+[hidden]{display:none !important}

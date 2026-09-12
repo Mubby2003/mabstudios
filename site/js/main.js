@@ -31,10 +31,26 @@ const ENQUIRY_ENDPOINT   = '';    // e.g. 'https://formspree.io/f/abcdwxyz'
 const NEWSLETTER_ENDPOINT = '';   // optional; falls back to the one above
 const STUDIO_EMAIL = 'info@mabstudios.co.uk';
 
+/* TikTok handle, with or without the @. Leave it empty and every TikTok
+   link stays hidden — nothing points at a guessed account. */
+const TIKTOK_HANDLE = '';         // e.g. 'mabstudiosuk'
+
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse  = window.matchMedia('(hover: none)').matches;
+
+/* ================= SOCIAL LINKS ================= */
+function initSocial() {
+  const handle = TIKTOK_HANDLE.trim().replace(/^@/, '');
+  if (!handle) return;                       /* stays hidden until one is set */
+  const url = `https://www.tiktok.com/@${handle}`;
+  $$('[data-tiktok]').forEach(slot => {
+    const a = $('a', slot);
+    if (a) { a.href = url; a.textContent = `@${handle}`; }
+    slot.hidden = false;
+  });
+}
 
 /* ================= CUSTOM CURSOR ================= */
 function initCursor() {
@@ -468,6 +484,7 @@ function initReel(cursor) {
 
   const cursor = initCursor();
   initMagnets();
+  initSocial();
   initNav();
   const revealIO = initReveals();
   initCounters();
