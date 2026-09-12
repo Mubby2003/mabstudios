@@ -8,3 +8,6 @@ build/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# photographs waiting to be imported
+incoming/

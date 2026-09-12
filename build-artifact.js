@@ -30,18 +30,20 @@ const read = p => fs.readFileSync(p, 'utf8');
 /* ---------- image paths -> data URIs ---------- */
 const dataUri = new Map();
 for (const file of fs.readdirSync(SMALL)) {
-  if (!file.endsWith('.jpg')) continue;
+  if (!file.endsWith('-800.jpg')) continue;   // mid size only, keeps the file small
   const b64 = fs.readFileSync(path.join(SMALL, file)).toString('base64');
   dataUri.set(file, `data:image/jpeg;base64,${b64}`);
 }
 
 let missing = 0;
 
-/* HTML: the handful of <img src> paths become data URIs directly */
+/* HTML: <img src> paths become data URIs. Whatever size the markup asks
+   for, it resolves to the one mid-size copy we inlined. */
 function inlineImages(text) {
-  return text.replace(/assets\/img\/[a-z]+\/([\w-]+\.jpg)/g, (whole, file) => {
-    const uri = dataUri.get(file);
-    if (!uri) { console.warn(`  ! no small copy of ${file} — left as a path`); missing++; return whole; }
+  return text.replace(/assets\/img\/[a-z]+\/([\w-]+)\.jpg/g, (whole, name) => {
+    const mid = name.replace(/-(?:400|800|1500)$/, '') + '-800.jpg';
+    const uri = dataUri.get(mid);
+    if (!uri) { console.warn(`  ! no inlined copy of ${mid}`); missing++; return whole; }
     return uri;
   });
 }
@@ -50,11 +52,8 @@ function inlineImages(text) {
    reel), so they point at one shared table instead of repeating the base64 */
 const used = new Set();
 function tableRefs(text) {
-  return text.replace(/(['"`])assets\/img\/[a-z]+\/([\w-]+\.jpg)\1/g, (whole, q, file) => {
-    if (!dataUri.has(file)) { console.warn(`  ! no small copy of ${file}`); missing++; return whole; }
-    used.add(file);
-    return `IMG[${JSON.stringify(file)}]`;
-  });
+  for (const k of dataUri.keys()) used.add(k);
+  return text;
 }
 
 /* ---------- javascript: four modules, one scope ---------- */
@@ -66,7 +65,15 @@ const js = ['data.js', 'hero.js', 'gallery3d.js', 'wordmark.js', 'main.js']
   .map(f => `/* ===== ${f} ===== */\n` + stripModule(read(path.join(SITE, 'js', f))))
   .join('\n\n');
 
-const jsRefs = tableRefs(js);
+/* The page builds its own paths at runtime, so the two helpers in data.js
+   are rewritten to read the inlined table instead. srcset is dropped —
+   three data URIs per image would triple the file for no benefit here. */
+let jsRefs = tableRefs(js);
+jsRefs = jsRefs
+  .replace(/^const img = .*$/m,
+           "const img = (base) => IMG[base.split('/').pop() + '-800.jpg'] || '';")
+  .replace(/^const srcsetFor = .*$/m,
+           "const srcsetFor = () => '';");
 const table = [...used].sort().map(f => `${JSON.stringify(f)}:${JSON.stringify(dataUri.get(f))}`).join(',\n');
 const bundle = `(function(){\n"use strict";\nconst THREE = window.THREE;\nconst IMG = {\n${table}\n};\n\n${jsRefs}\n})();`;
 
