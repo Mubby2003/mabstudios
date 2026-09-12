@@ -33,7 +33,7 @@ const STUDIO_EMAIL = 'info@mabstudios.co.uk';
 
 /* TikTok handle, with or without the @. Leave it empty and every TikTok
    link stays hidden — nothing points at a guessed account. */
-const TIKTOK_HANDLE = '';         // e.g. 'mabstudiosuk'
+const TIKTOK_HANDLE = 'mabstudios';   // tiktok.com/@mabstudios
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
