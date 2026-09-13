@@ -630,7 +630,7 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
 .foot__mark{
   position:relative;
   width:100%;
-  height:clamp(64px,13vw,180px);
+  height:clamp(92px,14vw,180px);
   margin-bottom:clamp(2rem,6vw,4rem);
   cursor:crosshair;
 }
