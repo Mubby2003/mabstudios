@@ -27,7 +27,7 @@ export function createWordmark({ canvas, text, reduced }) {
 
   let particles = [];
   let raf = 0, inView = false, dpr = 1;
-  let w = 0, h = 0;
+  let w = 0, h = 0, dot = SETTINGS.dotSize;
   const pointer = { x: -9999, y: -9999, active: false };
 
   const styles = getComputedStyle(document.documentElement);
@@ -67,8 +67,13 @@ export function createWordmark({ canvas, text, reduced }) {
 
     const data = octx.getImageData(0, 0, w, h).data;
 
-    /* widen the sampling step until the count is sane on small screens */
-    let step = SETTINGS.sample;
+    /* The step has to scale with the type, not be a fixed pixel count.
+       At 4px it read well against a 150px letterform on a laptop and
+       turned to dust against the 28px one a phone renders — same step,
+       a seventh of the rows. Tie it to the font size and the density
+       comes out the same at any width. */
+    dot = Math.max(1.2, Math.min(2.6, size / 62));
+    let step = Math.max(2, Math.round(size / 24));
     let found;
     do {
       found = [];
@@ -100,7 +105,8 @@ export function createWordmark({ canvas, text, reduced }) {
     t += 0.01;
     ctx.clearRect(0, 0, w, h);
 
-    const r2 = SETTINGS.radius * SETTINGS.radius;
+    const reach = Math.max(70, Math.min(SETTINGS.radius, w * 0.22));
+    const r2 = reach * reach;
 
     for (const p of particles) {
       /* idle drift keeps the word breathing */
@@ -114,10 +120,10 @@ export function createWordmark({ canvas, text, reduced }) {
         const d2 = ox * ox + oy * oy;
         if (d2 < r2 && d2 > 0.01) {
           const d = Math.sqrt(d2);
-          const force = (1 - d / SETTINGS.radius) * SETTINGS.push;
+          const force = (1 - d / reach) * SETTINGS.push;
           p.vx += (ox / d) * force;
           p.vy += (oy / d) * force;
-          lit = 1 - d / SETTINGS.radius;
+          lit = 1 - d / reach;
         }
       }
 
@@ -134,7 +140,7 @@ export function createWordmark({ canvas, text, reduced }) {
       /* particles the pointer has disturbed warm towards the accent */
       ctx.fillStyle = p.lit > 0.02 ? accent : base;
       ctx.globalAlpha = 0.30 + p.lit * 0.7;
-      ctx.fillRect(p.x, p.y, SETTINGS.dotSize, SETTINGS.dotSize);
+      ctx.fillRect(p.x, p.y, dot, dot);
     }
     ctx.globalAlpha = 1;
   }
@@ -144,7 +150,7 @@ export function createWordmark({ canvas, text, reduced }) {
     ctx.clearRect(0, 0, w, h);
     ctx.globalAlpha = 0.5;
     ctx.fillStyle = base;
-    for (const p of particles) ctx.fillRect(p.hx, p.hy, SETTINGS.dotSize, SETTINGS.dotSize);
+    for (const p of particles) ctx.fillRect(p.hx, p.hy, dot, dot);
     ctx.globalAlpha = 1;
   }
 
