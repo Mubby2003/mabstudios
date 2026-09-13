@@ -37,9 +37,18 @@
 <body>
 
 <!-- ============ CUSTOM CURSOR ============ -->
+<!-- A viewfinder rather than a dot: an aperture that opens on anything
+     clickable, and focus brackets that lock on over a photograph. -->
 <div class="cursor" id="cursor" aria-hidden="true">
   <div class="cursor__dot"></div>
-  <div class="cursor__ring"><span class="cursor__label"></span></div>
+  <div class="cursor__ring">
+    <svg class="cursor__iris" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="22" cy="22" r="20"/>
+      <path class="cursor__blades" d="M22 2v20l-17.3 10M39.3 32 22 22l17.3-10M4.7 12 22 22v20"/>
+    </svg>
+    <span class="cursor__label"></span>
+  </div>
+  <div class="cursor__frame"><i></i><i></i><i></i><i></i></div>
 </div>
 
 <!-- ============ NAV ============ -->
