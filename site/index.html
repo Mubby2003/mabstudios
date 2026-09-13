@@ -303,8 +303,11 @@
       </div>
       <div class="form__row">
         <div class="field">
-          <label for="phone">Phone <em class="opt">so we can call you back</em></label>
-          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="07… or +44…">
+          <label for="phone">Phone <em class="opt">wherever in the world you are</em></label>
+          <div class="tel">
+            <select id="dial" name="dial_code" aria-label="Country dialling code"></select>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="Phone number">
+          </div>
           <small></small>
         </div>
         <div class="field">

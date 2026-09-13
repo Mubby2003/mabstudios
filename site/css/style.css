@@ -743,3 +743,24 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
   font-style:normal;text-transform:none;letter-spacing:.02em;
   color:rgba(148,139,131,.8);font-size:.92em;
 }
+
+/* ---------- dialling code + number, sharing one underline ---------- */
+.tel{
+  display:grid;grid-template-columns:auto 1fr;align-items:center;
+  gap:.55rem;border-bottom:1px solid var(--line);
+  transition:border-color .4s var(--ease);
+}
+.tel:focus-within{border-bottom-color:var(--candle)}
+.tel select,.tel input{border-bottom:0!important}
+.tel select{
+  width:auto;max-width:9.5rem;padding-right:1.1rem;
+  font-size:.86rem;color:var(--mute);cursor:pointer;
+  background-position:calc(100% - 6px) 1.3rem,calc(100% - 1px) 1.3rem;
+}
+.tel select:focus{color:var(--linen)}
+.tel input{padding-left:0}
+.field.has-error .tel{border-bottom-color:#e0776a}
+@media (max-width:420px){
+  .tel{grid-template-columns:1fr;gap:0}
+  .tel select{max-width:none;padding-bottom:.2rem}
+}
