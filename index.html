@@ -30,6 +30,47 @@
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d0a08'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23e2b087' stroke-width='6'/><circle cx='50' cy='50' r='9' fill='%23e2b087'/></svg>">
+<!-- Structured data: tells Google this is a UK photography business rather
+     than an unlabelled page. Every value here is true. No rating or review
+     markup — inventing those is both dishonest and against Google's
+     guidelines, and it earns a manual penalty when caught. Add real
+     reviews and this is where they go. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://mubby2003.github.io/mabstudios/#studio",
+  "name": "MAB Studios",
+  "alternateName": "MAB Studios UK",
+  "description": "Portrait, wedding, traditional ceremony and event photography. Based in the United Kingdom, travelling for bookings.",
+  "url": "https://mubby2003.github.io/mabstudios/",
+  "email": "info@mabstudios.co.uk",
+  "telephone": "+447562511049",
+  "image": "https://mubby2003.github.io/mabstudios/assets/img/ig/black-tie-white-cape-1500.jpg",
+  "address": { "@type": "PostalAddress", "addressCountry": "GB" },
+  "areaServed": { "@type": "Country", "name": "United Kingdom" },
+  "availableLanguage": "en",
+  "sameAs": [
+    "https://www.instagram.com/mabstudiosuk",
+    "https://www.tiktok.com/@mabstudios"
+  ],
+  "knowsAbout": [
+    "Wedding photography",
+    "Yoruba traditional wedding photography",
+    "Nigerian traditional ceremony photography",
+    "Portrait photography",
+    "Personal branding photography",
+    "Event photography"
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding photography" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Traditional ceremony photography" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portrait and personal branding photography" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Event photography" } }
+  ]
+}
+</script>
+
 <script type="importmap">
 { "imports": { "three": "./assets/vendor/three.module.js" } }
 </script>
