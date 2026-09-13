@@ -55,25 +55,49 @@ function initSocial() {
 /* ================= CUSTOM CURSOR ================= */
 function initCursor() {
   if (coarse || reduced) { $('#cursor').remove(); return { setLabel() {}, drag() {} }; }
-  const el = $('#cursor'), dot = $('.cursor__dot', el), ring = $('.cursor__ring', el), label = $('.cursor__label', el);
+  const el = $('#cursor'), dot = $('.cursor__dot', el), ring = $('.cursor__ring', el),
+        frame = $('.cursor__frame', el), label = $('.cursor__label', el);
   let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
 
   addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; }, { passive: true });
+
+  /* the dot tracks exactly, the aperture and brackets lag slightly behind —
+     that trailing is what makes it feel like a lens settling rather than a
+     sprite glued to the pointer */
   (function loop() {
     rx += (x - rx) * 0.16; ry += (y - ry) * 0.16;
     dot.style.transform = `translate(${x}px, ${y}px) translate(-50%,-50%)`;
     ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    frame.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
     requestAnimationFrame(loop);
   })();
 
+  const setLabel = text => { label.textContent = text || ''; };
+
   document.addEventListener('pointerover', e => {
-    const t = e.target.closest('[data-cursor], a, button');
-    el.classList.toggle('is-hover', !!t);
+    /* a photograph gets focus brackets; anything else clickable gets the
+       aperture; plain text gets neither */
+    const shot = e.target.closest('.tile, .lb__fig, .studio__media');
+    const hit  = e.target.closest('[data-cursor], a, button, input, select, textarea, label');
+
+    el.classList.toggle('is-frame', !!shot);
+    el.classList.toggle('is-hover', !!hit && !shot);
+
+    if (shot) setLabel(shot.classList.contains('tile') ? 'View' : '');
+    else if (!el.classList.contains('is-drag')) setLabel('');
   });
 
+  /* the shutter: blades snap closed while the button is held */
+  addEventListener('pointerdown', () => el.classList.add('is-down'));
+  addEventListener('pointerup',   () => el.classList.remove('is-down'));
+
+  /* hide it when the pointer leaves the window entirely */
+  document.addEventListener('mouseleave', () => { el.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { el.style.opacity = ''; });
+
   return {
-    setLabel(text) { label.textContent = text || ''; },
-    drag(on) { el.classList.toggle('is-drag', on); }
+    setLabel,
+    drag(on) { el.classList.toggle('is-drag', on); setLabel(on ? 'Drag' : ''); }
   };
 }
 
