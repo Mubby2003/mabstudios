@@ -764,3 +764,13 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
   .tel{grid-template-columns:1fr;gap:0}
   .tel select{max-width:none;padding-bottom:.2rem}
 }
+
+/* "Did you mean…?" — an offer, never an automatic correction */
+.field small .suggest{
+  display:inline-block;background:none;border:0;padding:0;cursor:pointer;
+  font-size:.72rem;letter-spacing:.02em;color:var(--candle);text-align:left;
+  border-bottom:1px solid transparent;transition:border-color .3s var(--ease);
+}
+.field small .suggest b{font-weight:500}
+.field small .suggest:hover,.field small .suggest:focus-visible{border-bottom-color:var(--candle);outline:none}
+.field small:has(.suggest){opacity:1;transform:none}

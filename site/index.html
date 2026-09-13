@@ -292,12 +292,12 @@
       <div class="form__row">
         <div class="field">
           <label for="name">Your name</label>
-          <input id="name" name="name" type="text" required placeholder="First and last name">
+          <input id="name" name="name" type="text" required autocomplete="name" autocapitalize="words" spellcheck="false" placeholder="First and last name">
           <small></small>
         </div>
         <div class="field">
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" required placeholder="you@email.com">
+          <input id="email" name="email" type="email" required inputmode="email" autocomplete="email" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="you@email.com">
           <small></small>
         </div>
       </div>
@@ -350,12 +350,12 @@
       </div>
       <div class="field">
         <label for="place">Where is it? <em class="opt">venue, town or city</em></label>
-        <input id="place" name="location" type="text" placeholder="Venue name, or just the town">
+        <input id="place" name="location" type="text" autocomplete="address-level2" autocapitalize="words" placeholder="Venue name, or just the town">
         <small></small>
       </div>
       <div class="field">
         <label for="msg">Tell us about it</label>
-        <textarea id="msg" name="message" rows="4" required placeholder="Roughly how many people, what the day looks like, and anything that matters to you."></textarea>
+        <textarea id="msg" name="message" rows="4" required autocapitalize="sentences" placeholder="Roughly how many people, what the day looks like, and anything that matters to you."></textarea>
         <small></small>
       </div>
 

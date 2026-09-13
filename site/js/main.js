@@ -357,6 +357,65 @@ function initForm() {
     input.addEventListener('input', () => { if (input.closest('.field').classList.contains('has-error')) check(input); });
   });
 
+  /* ---- email typo catcher ----
+     A mistyped address is the worst failure this form has: it validates,
+     it sends, he replies, and it bounces into nothing. Neither party ever
+     learns why. So when a domain is one or two characters away from a
+     common one, offer the correction as a single tap. */
+  const MAIL_DOMAINS = ['gmail.com','googlemail.com','yahoo.com','yahoo.co.uk','hotmail.com',
+    'hotmail.co.uk','outlook.com','outlook.co.uk','live.co.uk','live.com','icloud.com','me.com',
+    'aol.com','btinternet.com','sky.com','virginmedia.com','msn.com','proton.me','protonmail.com',
+    'mail.com','gmx.com','yandex.com','talktalk.net','ntlworld.com'];
+
+  const distance = (a, b) => {
+    if (Math.abs(a.length - b.length) > 2) return 9;
+    const d = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      let prev = d[0]; d[0] = i;
+      for (let j = 1; j <= b.length; j++) {
+        const tmp = d[j];
+        d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prev = tmp;
+      }
+    }
+    return d[b.length];
+  };
+
+  const suggestEmail = value => {
+    const at = value.lastIndexOf('@');
+    if (at < 1) return null;
+    const local = value.slice(0, at), domain = value.slice(at + 1).toLowerCase();
+    if (!domain || MAIL_DOMAINS.includes(domain)) return null;
+    let best = null, bestD = 3;
+    for (const d of MAIL_DOMAINS) {
+      const dist = distance(domain, d);
+      if (dist > 0 && dist < bestD) { bestD = dist; best = d; }
+    }
+    return best ? `${local}@${best}` : null;
+  };
+
+  const emailField = form.elements.email;
+  if (emailField) {
+    const slot = $('small', emailField.closest('.field'));
+
+    const offer = () => {
+      emailField.value = emailField.value.trim();          /* pasted addresses carry spaces */
+      if (emailField.closest('.field').classList.contains('has-error')) return;
+      const guess = suggestEmail(emailField.value);
+      slot.innerHTML = '';
+      if (!guess) return;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'suggest';
+      btn.innerHTML = `Did you mean <b>${guess}</b>?`;
+      btn.addEventListener('click', () => { emailField.value = guess; slot.innerHTML = ''; check(emailField); });
+      slot.appendChild(btn);
+    };
+
+    emailField.addEventListener('blur', offer);
+    emailField.addEventListener('input', () => { if (slot.querySelector('.suggest')) slot.innerHTML = ''; });
+  }
+
   /* ---- dialling code ----
      He shoots destination weddings, so the number can come from anywhere.
      Defaults to the visitor's own region when the browser reports one,
