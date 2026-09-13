@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://mubby2003.github.io/mabstudios/sitemap.xml
