@@ -35,6 +35,32 @@ const STUDIO_EMAIL = 'info@mabstudios.co.uk';
    link stays hidden — nothing points at a guessed account. */
 const TIKTOK_HANDLE = 'mabstudios';   // tiktok.com/@mabstudios
 
+/* ------------------------------------------------------------------
+   Dialling codes. Deliberately no flag emoji: Windows ships no flag
+   glyphs at all and renders them as bare letter pairs, and platforms
+   disagree about the rest. Country name plus code is legible anywhere.
+   Encoded as "ISO:code:Name" to keep this short.
+------------------------------------------------------------------ */
+const DIAL_CODES = ('GB:44:United Kingdom|IE:353:Ireland|US:1:United States|CA:1:Canada|'
+ + 'NG:234:Nigeria|GH:233:Ghana|KE:254:Kenya|ZA:27:South Africa|TZ:255:Tanzania|UG:256:Uganda|'
+ + 'RW:250:Rwanda|ET:251:Ethiopia|EG:20:Egypt|MA:212:Morocco|SN:221:Senegal|CI:225:Côte d’Ivoire|'
+ + 'CM:237:Cameroon|ZM:260:Zambia|ZW:263:Zimbabwe|BW:267:Botswana|NA:264:Namibia|MU:230:Mauritius|'
+ + 'FR:33:France|DE:49:Germany|ES:34:Spain|IT:39:Italy|PT:351:Portugal|NL:31:Netherlands|'
+ + 'BE:32:Belgium|LU:352:Luxembourg|CH:41:Switzerland|AT:43:Austria|DK:45:Denmark|SE:46:Sweden|'
+ + 'NO:47:Norway|FI:358:Finland|IS:354:Iceland|PL:48:Poland|CZ:420:Czechia|SK:421:Slovakia|'
+ + 'HU:36:Hungary|RO:40:Romania|BG:359:Bulgaria|GR:30:Greece|HR:385:Croatia|SI:386:Slovenia|'
+ + 'RS:381:Serbia|UA:380:Ukraine|LT:370:Lithuania|LV:371:Latvia|EE:372:Estonia|MT:356:Malta|'
+ + 'CY:357:Cyprus|TR:90:Türkiye|RU:7:Russia|'
+ + 'AE:971:United Arab Emirates|SA:966:Saudi Arabia|QA:974:Qatar|KW:965:Kuwait|BH:973:Bahrain|'
+ + 'OM:968:Oman|JO:962:Jordan|LB:961:Lebanon|IL:972:Israel|'
+ + 'IN:91:India|PK:92:Pakistan|BD:880:Bangladesh|LK:94:Sri Lanka|NP:977:Nepal|'
+ + 'CN:86:China|HK:852:Hong Kong|TW:886:Taiwan|JP:81:Japan|KR:82:South Korea|'
+ + 'SG:65:Singapore|MY:60:Malaysia|TH:66:Thailand|VN:84:Vietnam|PH:63:Philippines|ID:62:Indonesia|'
+ + 'AU:61:Australia|NZ:64:New Zealand|FJ:679:Fiji|'
+ + 'BR:55:Brazil|AR:54:Argentina|CL:56:Chile|CO:57:Colombia|PE:51:Peru|MX:52:Mexico|'
+ + 'JM:1876:Jamaica|TT:1868:Trinidad & Tobago|BB:1246:Barbados|DO:1809:Dominican Republic'
+).split('|').map(s => { const [iso, code, name] = s.split(':'); return { iso, code, name }; });
+
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -304,7 +330,9 @@ function initForm() {
     email:   v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'That email does not look right.',
     /* deliberately loose: UK mobiles, landlines and +44 forms all vary, and
        rejecting a real number is far worse than accepting an odd one */
-    phone:   v => (v.replace(/\D/g, '').length >= 7) || 'A number we can reach you on, please.',
+    /* lenient on purpose — numbering plans vary by country and the dial
+       code is chosen separately, so this only checks it looks like a number */
+    phone:   v => (v.replace(/\D/g, '').length >= 6) || 'A number we can reach you on, please.',
     message: v => v.trim().length > 9 || 'A sentence or two is plenty.'
   };
   const REQUIRED = ['name', 'email', 'phone', 'message'];
@@ -329,6 +357,19 @@ function initForm() {
     input.addEventListener('input', () => { if (input.closest('.field').classList.contains('has-error')) check(input); });
   });
 
+  /* ---- dialling code ----
+     He shoots destination weddings, so the number can come from anywhere.
+     Defaults to the visitor's own region when the browser reports one,
+     falling back to the UK. */
+  const dial = form.elements.dial_code;
+  if (dial) {
+    const region = (navigator.language || '').split('-')[1]?.toUpperCase();
+    const preferred = DIAL_CODES.some(c => c.iso === region) ? region : 'GB';
+    dial.innerHTML = DIAL_CODES
+      .map(c => `<option value="+${c.code}" data-iso="${c.iso}"${c.iso === preferred ? ' selected' : ''}>${c.name} +${c.code}</option>`)
+      .join('');
+  }
+
   /* ---- date field ----
      The native control is fiddly: the calendar only opens from the small
      icon, and an empty field still shows dd/mm/yyyy at full strength. */
@@ -351,6 +392,17 @@ function initForm() {
 
   const btn = $('button[type="submit"] span', form) || $('button[type="submit"]', form);
   const btnLabel = btn.textContent;
+
+  /* The enquiry email should carry one number that can be dialled as-is,
+     not a code in one field and digits in another. */
+  const payload = () => {
+    const data = new FormData(form);
+    const code = (data.get('dial_code') || '').toString();
+    const num  = (data.get('phone') || '').toString().trim().replace(/^0+/, '');
+    if (code && num) data.set('phone', `${code} ${num}`);
+    data.delete('dial_code');
+    return data;
+  };
 
   const say = (text, good) => {
     note.textContent = text;
@@ -380,7 +432,7 @@ function initForm() {
       const res = await fetch(ENQUIRY_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
+        body: payload()
       });
 
       if (res.ok) {
