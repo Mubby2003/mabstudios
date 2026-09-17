@@ -390,13 +390,53 @@
         </div>
       </div>
       <div class="field">
+        <!-- one choice, so radios — the reference used checkboxes, which let
+             someone tick "UK" and "Destination" at once -->
+        <fieldset class="choice" id="scope">
+          <legend>In the UK or abroad?</legend>
+          <label><input type="radio" name="scope" value="UK"> In the UK</label>
+          <label><input type="radio" name="scope" value="Destination"> Destination, abroad</label>
+          <label><input type="radio" name="scope" value="Not sure yet"> Not sure yet</label>
+        </fieldset>
+      </div>
+      <div class="field">
         <label for="place">Where is it? <em class="opt">venue, town or city</em></label>
-        <input id="place" name="location" type="text" autocomplete="address-level2" autocapitalize="words" placeholder="Venue name, or just the town">
+        <input id="place" name="location" type="text" autocomplete="address-level2" autocapitalize="words" placeholder="Venue name, and the city or country">
         <small></small>
       </div>
       <div class="field">
+        <!-- guests only matter for weddings and events; hidden for studio sessions -->
+        <div class="form__row">
+          <div class="field" id="guestsField">
+            <label for="guests">Number of guests</label>
+            <select id="guests" name="guests">
+              <option value="">Roughly…</option>
+              <option>Under 50</option>
+              <option>50 – 100</option>
+              <option>100 – 200</option>
+              <option>200 – 350</option>
+              <option>350 +</option>
+            </select>
+            <small></small>
+          </div>
+          <div class="field">
+            <label for="budget">Photography budget</label>
+            <select id="budget" name="budget">
+              <option value="">Choose a range…</option>
+              <option>Under £1,000</option>
+              <option>£1,000 – £2,000</option>
+              <option>£2,000 – £3,500</option>
+              <option>£3,500 – £5,000</option>
+              <option>£5,000 +</option>
+              <option>Rather discuss it</option>
+            </select>
+            <small></small>
+          </div>
+        </div>
+      </div>
+      <div class="field">
         <label for="msg">Tell us about it</label>
-        <textarea id="msg" name="message" rows="4" required autocapitalize="sentences" placeholder="Roughly how many people, what the day looks like, and anything that matters to you."></textarea>
+        <textarea id="msg" name="message" rows="4" required autocapitalize="sentences" placeholder="What the day looks like, the moments that matter most, and anything we should know."></textarea>
         <small></small>
       </div>
 

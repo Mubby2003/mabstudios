@@ -774,3 +774,25 @@ input[type="date"].is-empty::-webkit-datetime-edit{color:rgba(148,139,131,.7)}
 .field small .suggest b{font-weight:500}
 .field small .suggest:hover,.field small .suggest:focus-visible{border-bottom-color:var(--candle);outline:none}
 .field small:has(.suggest){opacity:1;transform:none}
+
+/* ---------- UK or abroad: radio pills ---------- */
+.choice{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.choice legend{
+  width:100%;padding:0;margin-bottom:.7rem;
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);
+}
+.choice label{
+  text-transform:none;letter-spacing:.01em;
+  position:relative;display:inline-flex;align-items:center;
+  padding:.62rem 1.05rem;border:1px solid var(--line);border-radius:100px;
+  font-size:.82rem;color:var(--mute);cursor:pointer;
+  transition:border-color .3s var(--ease),color .3s var(--ease),background .3s var(--ease);
+}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label:hover{border-color:rgba(236,231,224,.4);color:var(--linen)}
+.choice label:has(input:checked){border-color:var(--candle);color:var(--linen);background:var(--candle-soft)}
+.choice label:has(input:focus-visible){box-shadow:0 0 0 2px var(--candle)}
+
+/* guests fade out rather than jump when a studio session is chosen */
+#guestsField{transition:opacity .3s var(--ease)}
+#guestsField.is-off{opacity:.35;pointer-events:none}
