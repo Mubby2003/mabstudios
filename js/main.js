@@ -337,6 +337,22 @@ function initForm() {
   };
   const REQUIRED = ['name', 'email', 'phone', 'message'];
 
+  /* Guest numbers mean nothing for a studio portrait, so the field steps
+     back when one of those is picked — and its value is cleared, so the
+     email never reports "200 guests" for a headshot. */
+  const pkg = form.elements.package, guestsField = $('#guestsField');
+  if (pkg && guestsField) {
+    const STUDIO = /portrait|branding|headshot|maternity/i;
+    const syncGuests = () => {
+      const off = STUDIO.test(pkg.value);
+      guestsField.classList.toggle('is-off', off);
+      form.elements.guests.disabled = off;
+      if (off) form.elements.guests.value = '';
+    };
+    pkg.addEventListener('change', syncGuests);
+    syncGuests();
+  }
+
   /* the standing note only promises an inbox once one is configured */
   if (ENQUIRY_ENDPOINT) {
     note.textContent = 'Your enquiry comes straight to the studio inbox. Prefer to chat? WhatsApp is faster.';
